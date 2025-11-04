@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "postcss src/styles.css --dir dist",
+    "watch:css": "postcss src/styles.css --dir dist --w"
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "^3.1.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-custom-media": "^11.0.6"
+  }
+}
