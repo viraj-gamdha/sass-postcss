@@ -4,12 +4,10 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import crypto from "crypto";
 // Postcss
-// import postcssPresetEnv from "postcss-preset-env";
+import postcssPresetEnv from "postcss-preset-env";
 import cssNano from "cssnano";
 import postcssGlobalData from "@csstools/postcss-global-data";
-import postcssNesting from "postcss-nesting";
 import autoprefixer from "autoprefixer";
-import postcssCustomMedia from "postcss-custom-media";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -34,16 +32,17 @@ export default defineConfig({
     },
     postcss: {
       plugins: [
-        // postcssPresetEnv({
-        //   stage: 2,
-        //   features: {
-        //     "nesting-rules": true,
-        //   },
-        // }),
+        postcssPresetEnv({
+          stage: 2,
+          features: {
+            "nesting-rules": true,
+            "color-functional-notation": true,
+            "color-mix": true,
+            "custom-media-queries": true
+          },
+        }),
         postcssGlobalData({ files: ["src/styles/media.css"] }), // Global media queries
-        postcssNesting(), // Sass-like nesting
         autoprefixer(), // Add vendor prefixes
-        postcssCustomMedia(),
         ...(process.env.NODE_ENV === "production" ? [cssNano()] : []), // Minify in prod only
       ],
     },
