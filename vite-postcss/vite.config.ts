@@ -32,6 +32,7 @@ export default defineConfig({
     },
     postcss: {
       plugins: [
+        postcssGlobalData({ files: ["src/styles/media.css"] }), // Global media queries
         postcssPresetEnv({
           stage: 2,
           features: {
@@ -41,7 +42,6 @@ export default defineConfig({
             "custom-media-queries": true
           },
         }),
-        postcssGlobalData({ files: ["src/styles/media.css"] }), // Global media queries
         autoprefixer(), // Add vendor prefixes
         ...(process.env.NODE_ENV === "production" ? [cssNano()] : []), // Minify in prod only
       ],
